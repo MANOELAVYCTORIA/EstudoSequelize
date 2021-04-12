@@ -92,12 +92,12 @@ Usuario.findAll({
 
 console.log('C) Buscar todos os posts e exibir 2 por vez: ')
 
-Comentario.findAll({
-    order: [
-        ['id', 'ASC'] //DESC => DECRECENTE
-    ],
-    limit: 2,
-})
-.then((resultado) => {
-    console.log(resultado.map(Comentario => Comentario.toJSON()));
-});
+for (let i = 0; i < 6; i += 2) {
+    Comentario.findAll({
+      order: [['id', 'DESC']],
+      offset: i,
+      limit: 2,
+    }).then((resultado) => {
+      console.table(resultado.map((comment) => comment.toJSON()));
+    });
+  }
