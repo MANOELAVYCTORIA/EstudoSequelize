@@ -90,7 +90,7 @@ Usuario.findAll({
    console.log(resultado.map(Usuario => Usuario.toJSON()));
 });
 
-console.log('C) Buscar todos os posts e exibir 2 por vez: ')
+console.log('C) Buscar todos os comentarios e exibir 2 por vez: ')
 
 for (let i = 0; i < 6; i += 2) {
     Comentario.findAll({
