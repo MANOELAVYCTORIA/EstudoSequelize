@@ -12,5 +12,9 @@ module.exports = (sequelize, DataTypes) =>{
         }
     );
 
+    Comentario.associate = (models) => {
+        Comentario.belongsTo(models.Post, {as: 'posts', foreignKey: "posts_id"});
+    }
+
     return Comentario;
 }

@@ -137,70 +137,105 @@ crie um post relacionado ao seu usuario
 atualize o email do usuario 'Sergio' para 'sergio@digitalhouse.com'
 apague o usuario 'Felipe Veronesi' filtrando pelo id */
 
-console.log('------------------------------------------------------')
+// console.log('------------------------------------------------------')
 
-console.log('A) adicione todos os integrantes do seu grupo como Usuarios utilizando o método create:');
+// console.log('A) adicione todos os integrantes do seu grupo como Usuarios utilizando o método create:');
 
 
-// Usuario.bulkCreate ([
-//     // {nome: 'Barbara Lícia', email: 'barbara@gmail.com', senha: 'barbara1234'},
-//     // {nome: 'Maria Luiza', email: 'maria@gmail.com', senha: 'maria1234'}
-//     // {nome: 'Lucio araujo', email: 'lucio@gmail.com', senha: 'lucio1234' },
-//     // {nome: 'Dari Diniz', email: 'dari@gmail.com', senha: 'dari1234'},
-//     // {nome: 'Angelo victor', email: 'angelo@gmail.com', senha: 'angelo1234'}
+// // Usuario.bulkCreate ([
+// //     // {nome: 'Barbara Lícia', email: 'barbara@gmail.com', senha: 'barbara1234'},
+// //     // {nome: 'Maria Luiza', email: 'maria@gmail.com', senha: 'maria1234'}
+// //     // {nome: 'Lucio araujo', email: 'lucio@gmail.com', senha: 'lucio1234' },
+// //     // {nome: 'Dari Diniz', email: 'dari@gmail.com', senha: 'dari1234'},
+// //     // {nome: 'Angelo victor', email: 'angelo@gmail.com', senha: 'angelo1234'}
 
-// ])
+// // ])
 
-Usuario.findAll().then((usuarios) => {
-    console.table(usuarios.map((usuario) => usuario.toJSON()));
-})
+// Usuario.findAll().then((usuarios) => {
+//     console.table(usuarios.map((usuario) => usuario.toJSON()));
+// })
 
-console.log('------------------------------------------------------')
+// console.log('------------------------------------------------------')
 
-console.log('B) crie um post relacionado ao seu usuario: ')
+// console.log('B) crie um post relacionado ao seu usuario: ')
 
-// Post.create ({
-//           texto: 'Aula da DH',
-//           img: ' ',
-//           usuarios_id: 5,
-//           n_likes: 0
+// // Post.create ({
+// //           texto: 'Aula da DH',
+// //           img: null,
+// //           usuarios_id: 5,
+// //           n_likes: 0
 
-//       }).then((resultado) => {
-//           console.log(resultado.toJSON());
-//       });
+// //       }).then((resultado) => {
+// //           console.log(resultado.toJSON());
+// //       });
       
-      Post.findAll().then((resultado) => {
-           console.table(resultado.map(post => post.toJSON()));
-         });
+//       Post.findAll().then((resultado) => {
+//            console.table(resultado.map(post => post.toJSON()));
+//          });
 
- console.log('------------------------------------------------------');
+//  console.log('------------------------------------------------------');
 
- console.log('C) atualize o email do usuario Sergio para sergio@digitalhouse.com');
+//  console.log('C) atualize o email do usuario Sergio para sergio@digitalhouse.com');
 
-//  Usuario.update({
-//           email: 'sergio@digitalhouse.com'
-//       }, {
-//           where: {
-//               id: 2
-//           }
+// //  Usuario.update({
+// //           email: 'sergio@digitalhouse.com'
+// //       }, {
+// //           where: {
+// //               id: 2
+// //           }
+// //       });
+
+// Usuario.findAll()
+// .then((resultado) => {
+//     console.table(resultado.map(usuario => usuario.toJSON()));
+// });
+
+// console.log('------------------------------------------------------');
+
+// console.log('D) apague o usuario Felipe Veronesi filtrando pelo id');
+
+// // Usuario.destroy({
+// //           where: {
+// //               id: 3
+// //           }
+// //       });
+
+//       Usuario.findAll()
+//       .then((resultado) => {
+//           console.table(resultado.map(usuario => usuario.toJSON()));
 //       });
 
-Usuario.findAll()
-.then((resultado) => {
-    console.table(resultado.map(usuario => usuario.toJSON()));
-});
 
-console.log('------------------------------------------------------');
 
-console.log('D) apague o usuario Felipe Veronesi filtrando pelo id');
+console.log('-------------------------------------');
+      
+// console.log('RELAÇÕES ENTRE OS MODULOS');
 
-// Usuario.destroy({
-//           where: {
-//               id: 3
-//           }
-//       });
+// // Usuario.findByPk(1, {include: [
+// //     {association: 'posts'}
+// // ]})
+// // .then((usuario) => {
+// //     console.table(usuario.posts.map((post) => post.toJSON()));
+// // });
 
-      Usuario.findAll()
-      .then((resultado) => {
-          console.table(resultado.map(usuario => usuario.toJSON()));
-      });
+// // Outro jeito
+
+// Usuario.findByPk(1,
+//     {include: 
+//         ['posts']})
+//         .then(
+//         usuario => {
+//         console.log(usuario.toJSON());
+//         sequelize.close();
+//     }
+// );
+
+console.log('A) Configure a relação de Posts e Comentários utilizando hasMany e belongsTo:');
+
+Post.findByPk(1, {include:['comentarios']}).then(
+    post => {
+        console.log(post.toJSON());
+        sequelize.close();
+    }
+)
+
