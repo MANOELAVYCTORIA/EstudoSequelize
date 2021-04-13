@@ -230,12 +230,26 @@ console.log('-------------------------------------');
 //     }
 // );
 
-console.log('A) Configure a relação de Posts e Comentários utilizando hasMany e belongsTo:');
+// console.log('A) Configure a relação de Posts e Comentários utilizando hasMany e belongsTo:');
 
-Post.findByPk(1, {include:['comentarios']}).then(
-    post => {
-        console.log(post.toJSON());
-        sequelize.close();
-    }
-)
+// Post.findByPk(1, {include:['comentarios']}).then(
+//     post => {
+//         console.log(post.toJSON());
+//         sequelize.close();
+//     }
+// )
+
+Post.findByPk(1, {include:['curtiu']}).then(
+        post => {
+            console.log(post.toJSON());
+            sequelize.close();
+        }
+    )
+    
+    // Post.findByPk(1, {include:['curtiu']}).then(
+    //     Usuario => {
+    //         console.log(usuario.toJSON());
+    //         sequelize.close();
+    //     }
+    // )
 
